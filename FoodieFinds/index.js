@@ -190,7 +190,7 @@ async function fetchDishesByFilters(isVeg) {
   return { dishes: response };
 }
 
-app.get('/restaurants/filter', async (req, res) => {
+app.get('/dishes/filter', async (req, res) => {
   try {
     let isVeg = req.query.isVeg;
 
@@ -198,7 +198,7 @@ app.get('/restaurants/filter', async (req, res) => {
     if (results.dishes.length === 0) {
       return res
         .status(404)
-        .json({ message: 'No restaurant found with the mentioned filters' });
+        .json({ message: 'No dishes found with the mentioned filters' });
     }
     res.status(200).json(results);
   } catch (err) {
@@ -208,7 +208,7 @@ app.get('/restaurants/filter', async (req, res) => {
 
 //FETCH DISHES AND SORT THEIR PRICING IN ASCENDING ORDER
 
-async function sortRestaurantsByPricing() {
+async function sortDishesByPricing() {
   let query = 'SELECT * FROM dishes ORDER BY price';
   let response = await db.all(query, []);
 
@@ -217,7 +217,7 @@ async function sortRestaurantsByPricing() {
 
 app.get('/dishes/sort-by-pricing', async (req, res) => {
   try {
-    let results = await sortRestaurantsByPricing();
+    let results = await sortDishesByPricing();
     if (results.dishes.length === 0) {
       return res
         .status(404)
