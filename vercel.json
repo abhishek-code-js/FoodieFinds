@@ -1,0 +1,5 @@
+{
+	"version": 2,
+	"builds": [{ "src": "FoodieFinds/index.js", "use": "@vercel/node" }],
+	"rewrites": [{ "source": "/(.*)", "destination": "FoodieFinds/index.js" }]
+}
